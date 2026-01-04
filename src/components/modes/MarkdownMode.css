@@ -14,23 +14,20 @@
   display: grid;
   grid-template-columns: 1fr 300px;
   gap: 2rem;
-  margin-bottom: 4rem;
-  padding-bottom: 4rem;
-  border-bottom: 1px solid #d4d4d4;
+  margin-bottom: 96px; /* 4 × 24px baseline */
 }
 
 .markdown-mode article:last-child,
 .markdown-mode section[data-slug]:last-child {
-  border-bottom: none;
   margin-bottom: 0;
 }
 
 /* Frontmatter Panel */
 .frontmatter {
-  padding: 1.5rem;
+  padding: 0 1.5rem;
   font-family: 'iA Writer Quattro', 'IBM Plex Mono', consolas, monaco, courier, 'courier new', monospace;
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 24px;
   color: #666;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -48,7 +45,8 @@
   color: #999;
   margin: 0;
   padding: 0;
-  line-height: 1.5;
+  line-height: 24px;
+  display: block;
 }
 
 /* Frontmatter Description Lists */
@@ -56,22 +54,13 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  line-height: 1.5;
-}
-
-/* Frontmatter separator (---) */
-.frontmatter-separator {
-  color: #999;
-  margin: 0;
-  padding: 0;
-  line-height: 1.5;
-  display: block;
+  line-height: 24px;
 }
 
 /* Remove extra spacing between dt/dd pairs */
 .frontmatter dt,
 .frontmatter dd {
-  line-height: 1.5;
+  line-height: 24px;
   margin: 0;
   padding: 0;
 }
@@ -415,148 +404,98 @@
    - Desktop: 1025px+
    ============================================ */
 
-/* Responsive: Large Tablet / Small Desktop */
+/* Responsive: Large Tablet / Small Desktop
+   Baseline grid: 16px / 24px */
 @media (min-width: 769px) and (max-width: 1200px) {
   .markdown-mode {
-    padding: 1.5rem 1.25rem;
+    padding: 24px 1.25rem;
   }
 
   .markdown-mode article,
   .markdown-mode section[data-slug] {
     grid-template-columns: 1fr 220px;
     gap: 1.5rem;
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
+    margin-bottom: 72px; /* 3 × 24px baseline */
   }
 
   .frontmatter {
-    font-size: 12px;
-    line-height: 1.45;
-    padding: 1rem;
+    font-size: 14px;
+    line-height: 24px;
+    padding: 0 1rem;
     top: 4rem;
   }
 
   .markdown {
-    padding: 1rem;
+    padding: 0 1rem;
   }
 }
 
-/* Responsive: Tablet Portrait */
+/* Responsive: Tablet Portrait
+   Baseline grid: 16px / 24px
+   All vertical spacing = n × 24px */
 @media (min-width: 641px) and (max-width: 768px) {
   .markdown-mode {
-    padding: 1.25rem 1rem;
+    padding: 24px 1rem; /* 1 × baseline */
   }
 
   .markdown-mode article,
   .markdown-mode section[data-slug] {
     grid-template-columns: 1fr;
     gap: 0;
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
+    margin-bottom: 72px; /* 3 × 24px baseline */
   }
 
   .frontmatter {
     position: static;
     max-height: none;
-    font-size: 11px;
-    line-height: 1.5;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 0;
+    margin-bottom: 24px; /* 1 × baseline */
     order: 1;
+  }
+
+  .frontmatter-separator {
+    font-size: 16px;
+    line-height: 24px;
   }
 
   .markdown {
     padding: 0;
     order: 2;
   }
-
-  .markdown,
-  .markdown h1,
-  .markdown h2,
-  .markdown h3,
-  .markdown h4,
-  .markdown h5,
-  .markdown h6,
-  .markdown pre,
-  .markdown code,
-  .markdown blockquote,
-  .markdown em,
-  .markdown strong,
-  .markdown p,
-  .markdown li {
-    font-size: 15px;
-    line-height: 23px;
-  }
-
-  .markdown h1 {
-    padding: 0 0 36px;
-  }
-
-  .markdown h1:after {
-    bottom: 18px;
-    content: '==============================';
-  }
-
-  .markdown hr:after {
-    content: '------------------------------';
-  }
-
-  .markdown h1,
-  .markdown p,
-  .markdown ul,
-  .markdown ol,
-  .markdown pre,
-  .markdown blockquote {
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-
-  .markdown h2,
-  .markdown h3,
-  .markdown h4,
-  .markdown h5,
-  .markdown h6 {
-    margin-bottom: 20px;
-  }
-
-  .markdown hr {
-    height: 20px;
-    margin-bottom: 20px;
-  }
-
-  .markdown hr:after {
-    line-height: 20px;
-  }
 }
 
-/* Responsive: Mobile */
+/* Responsive: Mobile
+   Baseline grid: 16px / 24px
+   All vertical spacing = n × 24px */
 @media (max-width: 640px) {
   .markdown-mode {
-    padding: 1rem 0.75rem;
+    padding: 24px 0.75rem; /* 1 × baseline */
   }
 
   .markdown-mode article,
   .markdown-mode section[data-slug] {
     grid-template-columns: 1fr;
     gap: 0;
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
+    margin-bottom: 72px; /* 3 × 24px baseline */
   }
 
-  /* Frontmatter: Compact on mobile */
+  /* Frontmatter: Same font-size as markdown */
   .frontmatter {
     position: static;
     max-height: none;
-    font-size: 10px;
-    line-height: 1.4;
-    padding: 0.75rem 0;
-    margin-bottom: 1.25rem;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 0;
+    margin-bottom: 24px; /* 1 × baseline */
     order: 1;
     overflow-x: auto;
   }
 
   .frontmatter-separator {
-    font-size: 10px;
+    font-size: 16px;
+    line-height: 24px;
   }
 
   .markdown {
@@ -578,19 +517,19 @@
   .markdown strong,
   .markdown p,
   .markdown li {
-    font-size: 14px;
-    line-height: 21px;
+    font-size: 16px;
+    line-height: 24px;
   }
 
-  /* Tighter vertical rhythm on mobile */
+  /* Vertical rhythm: all margins = n × 24px */
   .markdown h1,
   .markdown p,
   .markdown ul,
   .markdown ol,
   .markdown pre,
   .markdown blockquote {
-    margin-top: 16px;
-    margin-bottom: 16px;
+    margin-top: 24px;
+    margin-bottom: 24px;
   }
 
   .markdown h2,
@@ -598,102 +537,79 @@
   .markdown h4,
   .markdown h5,
   .markdown h6 {
-    margin-bottom: 16px;
+    margin-bottom: 24px;
   }
 
-  /* Shorter underline for h1 on mobile */
+  /* H1 with underline - maintain baseline */
   .markdown h1 {
-    padding: 0 0 32px;
+    padding: 0 0 48px; /* 2 × baseline */
     display: block;
     word-break: break-word;
   }
 
   .markdown h1:after {
-    bottom: 16px;
+    bottom: 24px; /* 1 × baseline */
     content: '====================';
   }
 
-  /* Shorter hr on mobile */
+  /* Horizontal rule */
   .markdown hr {
-    height: 16px;
-    margin-bottom: 16px;
+    height: 24px; /* 1 × baseline */
+    margin-bottom: 24px;
   }
 
   .markdown hr:after {
     content: '--------------------';
-    font-size: 14px;
-    line-height: 16px;
+    font-size: 16px;
+    line-height: 24px;
   }
 
-  /* Better list handling on mobile */
+  /* Lists */
   .markdown li {
     padding-left: 2.5ex;
   }
 
   /* Blockquote adjustments */
   .markdown blockquote {
-    padding: 0.75rem 0.75rem 0.75rem 2ch;
+    padding: 0 0 0 2ch;
   }
 
   .markdown blockquote:after {
-    top: 0.75rem;
-    font-size: 12px;
-    line-height: 21px;
+    top: 0;
+    font-size: 16px;
+    line-height: 24px;
   }
 
-  /* Code blocks */
+  /* Code blocks / ASCII art */
   .markdown pre {
-    padding: 0.75rem 0;
+    padding: 24px 0; /* 1 × baseline */
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+
+  .markdown pre code {
+    font-size: 0.8rem;
+    line-height: 1.2;
   }
 
   .markdown code {
-    font-size: 13px;
+    font-size: 16px;
     padding: 0.1em 0.2em;
   }
 
   /* Images */
   .markdown img {
-    margin: 16px 0;
+    margin: 24px 0; /* 1 × baseline */
     border-radius: 4px;
   }
 }
 
-/* Extra small devices */
+/* Extra small devices
+   Baseline grid: 16px / 24px (same as mobile)
+   Only adjust horizontal padding */
 @media (max-width: 375px) {
   .markdown-mode {
-    padding: 0.75rem 0.5rem;
-  }
-
-  .frontmatter {
-    font-size: 9px;
-    padding: 0.5rem 0;
-  }
-
-  .markdown,
-  .markdown h1,
-  .markdown h2,
-  .markdown h3,
-  .markdown h4,
-  .markdown h5,
-  .markdown h6,
-  .markdown pre,
-  .markdown code,
-  .markdown blockquote,
-  .markdown em,
-  .markdown strong,
-  .markdown p,
-  .markdown li {
-    font-size: 13px;
-    line-height: 20px;
-  }
-
-  .markdown h1:after {
-    content: '===============';
-  }
-
-  .markdown hr:after {
-    content: '---------------';
-    font-size: 13px;
+    padding: 24px 0.5rem; /* 1 × baseline, tighter horizontal */
   }
 }
 
@@ -708,23 +624,30 @@
 /* Landscape orientation on mobile */
 @media (max-width: 896px) and (orientation: landscape) {
   .markdown-mode {
-    padding: 1rem 2rem;
+    padding: 24px 2rem;
   }
 
   .markdown-mode article,
   .markdown-mode section[data-slug] {
     grid-template-columns: 1fr 180px;
     gap: 1.5rem;
+    margin-bottom: 48px; /* 2 × 24px baseline */
   }
 
   .frontmatter {
     position: sticky;
     top: 3rem;
-    font-size: 10px;
+    font-size: 16px;
+    line-height: 24px;
     max-height: calc(100vh - 5rem);
     overflow-y: auto;
     order: 2;
     margin-bottom: 0;
+  }
+
+  .frontmatter-separator {
+    font-size: 16px;
+    line-height: 24px;
   }
 
   .markdown {
