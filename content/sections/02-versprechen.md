@@ -24,6 +24,6 @@ wenn noch nichts feststeht — und die Komplexität hoch ist,
 
 … biete ich an:
 
-- **Facilitation** — wenn Gruppen sich finden: Großgruppen-Moderation. Workshop-Design. Prozessbegleitung.
-- **Strategie** — wenn Richtung entsteht: Product Field Framework. Strategieentwicklung. Sense-Making.
-- **Creative Technology** — wenn sich Ideen entwickeln: Prototyping. Tool-Entwicklung. Code als Denken.
+- **Facilitation** — damit Gruppen sich finden: Großgruppen-Moderation. Workshop-Design. Prozessbegleitung.
+- **Strategie** — damit Richtung entsteht: Product Field Framework. Strategieentwicklung. Sense-Making.
+- **Creative Technology** — damit sich Ideen entwickeln: Prototyping. Tool-Entwicklung. Code als Denken.
