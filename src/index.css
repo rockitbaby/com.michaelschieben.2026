@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Warm beige palette */
+    --background: 40 33% 97%;
+    --foreground: 0 0% 16%;
+
+    --card: 40 20% 95%;
+    --card-foreground: 0 0% 16%;
+
+    --popover: 40 33% 97%;
+    --popover-foreground: 0 0% 16%;
+
+    --primary: 0 0% 16%;
+    --primary-foreground: 40 33% 97%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 16%;
+
+    --muted: 40 10% 92%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 40 20% 90%;
+    --accent-foreground: 0 0% 16%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 83%;
+    --input: 0 0% 83%;
+    --ring: 0 0% 16%;
+
+    --radius: 0.375rem;
+
+    /* Code/Dark theme */
+    --code-bg: 0 0% 12%;
+    --code-foreground: 0 0% 90%;
+    --code-comment: 0 0% 50%;
+    --code-keyword: 210 100% 70%;
+    --code-string: 80 60% 50%;
+    --code-property: 30 80% 60%;
+
+    /* Sidebar */
+    --sidebar-background: 40 20% 95%;
+    --sidebar-foreground: 0 0% 40%;
+    --sidebar-primary: 0 0% 16%;
+    --sidebar-primary-foreground: 40 33% 97%;
+    --sidebar-accent: 40 15% 90%;
+    --sidebar-accent-foreground: 0 0% 16%;
+    --sidebar-border: 0 0% 85%;
+    --sidebar-ring: 0 0% 16%;
+
+    /* Custom tokens */
+    --meta-bg: 40 15% 93%;
+    --quote-border: 0 0% 70%;
+    --link-color: 220 70% 45%;
+
+    /* Highlight section (coral) */
+    --highlight-bg: 16 100% 66%;
+    --highlight-foreground: 0 0% 100%;
+    --highlight-muted: 16 80% 50%;
+  }
+
+  .dark {
+    --background: 0 0% 8%;
+    --foreground: 0 0% 90%;
+
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 90%;
+
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 90%;
+
+    --primary: 0 0% 90%;
+    --primary-foreground: 0 0% 8%;
+
+    --secondary: 0 0% 16%;
+    --secondary-foreground: 0 0% 90%;
+
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 0 0% 18%;
+    --accent-foreground: 0 0% 90%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 22%;
+    --input: 0 0% 22%;
+    --ring: 0 0% 80%;
+
+    --code-bg: 0 0% 6%;
+    --meta-bg: 0 0% 14%;
+    --quote-border: 0 0% 40%;
+    --link-color: 210 80% 65%;
+
+    /* Highlight section (coral - darker in dark mode) */
+    --highlight-bg: 16 70% 45%;
+    --highlight-foreground: 0 0% 100%;
+    --highlight-muted: 16 50% 35%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Typography defaults */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans font-semibold tracking-tight;
+  }
+
+  /* Prose/body content */
+  .prose {
+    font-family: Georgia, 'Times New Roman', serif;
+    @apply text-lg leading-relaxed;
+  }
+
+  .prose h2 {
+    font-family: 'Inter', system-ui, sans-serif;
+    @apply text-2xl font-semibold mt-12 mb-4;
+  }
+
+  .prose h3 {
+    font-family: 'Inter', system-ui, sans-serif;
+    @apply text-xl font-medium mt-8 mb-3;
+  }
+
+  .prose p {
+    @apply mb-4;
+  }
+
+  .prose strong {
+    @apply font-semibold;
+  }
+
+  /* Code/mono elements */
+  .font-mono {
+    font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+  }
+
+  code {
+    font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    @apply text-sm;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-primary/20;
+  }
+}
+
+@layer components {
+  /* Mode toggle button */
+  .mode-btn {
+    @apply px-4 py-2 text-sm font-mono uppercase tracking-wide transition-all duration-200;
+    @apply text-muted-foreground hover:text-foreground;
+    @apply border border-transparent hover:border-border;
+    @apply rounded-sm;
+  }
+
+  .mode-btn.active {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  /* Metadata sidebar */
+  .meta-sidebar {
+    @apply font-mono text-sm leading-relaxed;
+    @apply bg-meta p-6;
+  }
+
+  .meta-label {
+    @apply text-muted-foreground;
+  }
+
+  .meta-value {
+    @apply text-foreground;
+  }
+
+  /* Code block styling */
+  .code-block {
+    @apply bg-code text-code-foreground font-mono text-sm;
+    @apply p-6 rounded-md overflow-x-auto;
+  }
+
+  /* Quote styling */
+  .quote-block {
+    @apply border-l-2 border-quote pl-6 my-8;
+  }
+
+  .quote-text {
+    font-family: Georgia, 'Times New Roman', serif;
+    @apply text-xl italic leading-relaxed mb-3;
+  }
+
+  .quote-author {
+    @apply font-sans text-sm text-muted-foreground;
+  }
+
+  /* Photo collage */
+  .photo-collage {
+    @apply grid gap-3 my-8;
+  }
+
+  .photo-collage.asymmetric {
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .photo-collage.asymmetric > *:first-child {
+    grid-row: span 2;
+  }
+
+  /* Keyboard hint */
+  .kbd-hint {
+    @apply inline-flex items-center justify-center;
+    @apply px-1.5 py-0.5 text-xs font-mono;
+    @apply bg-muted text-muted-foreground rounded;
+    @apply border border-border;
+  }
+
+  /* Markdown syntax highlighting */
+  .md-heading {
+    @apply text-foreground font-semibold;
+  }
+
+  .md-bold {
+    @apply font-semibold;
+  }
+
+  .md-italic {
+    @apply italic;
+  }
+
+  .md-link {
+    color: hsl(var(--link-color));
+  }
+
+  .md-code {
+    @apply bg-muted px-1 rounded text-sm;
+  }
+
+  .md-blockquote {
+    @apply text-muted-foreground;
+  }
+
+  .md-frontmatter {
+    @apply bg-meta p-4 rounded font-mono text-sm;
+  }
+
+  .md-frontmatter-key {
+    color: hsl(var(--code-property));
+  }
+
+  .md-frontmatter-value {
+    color: hsl(var(--code-string));
+  }
+}
+
+@layer utilities {
+  .bg-meta {
+    background-color: hsl(var(--meta-bg));
+  }
+
+  .bg-code {
+    background-color: hsl(var(--code-bg));
+  }
+
+  .text-code-foreground {
+    color: hsl(var(--code-foreground));
+  }
+
+  .border-quote {
+    border-color: hsl(var(--quote-border));
+  }
+
+  /* Smooth transitions */
+  .transition-mode {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  /* Sticky sidebar */
+  .sticky-sidebar {
+    @apply sticky top-20;
+    max-height: calc(100vh - 6rem);
+    overflow-y: auto;
+  }
+}

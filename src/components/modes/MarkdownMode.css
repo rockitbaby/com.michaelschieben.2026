@@ -1,0 +1,751 @@
+/* ============================================
+   Markdown Mode – iA Writer Style
+   ============================================ */
+
+/* Layout Container */
+.markdown-mode {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.markdown-mode article,
+.markdown-mode section[data-slug] {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2rem;
+  margin-bottom: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid #d4d4d4;
+}
+
+.markdown-mode article:last-child,
+.markdown-mode section[data-slug]:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+/* Frontmatter Panel */
+.frontmatter {
+  padding: 1.5rem;
+  font-family: 'iA Writer Quattro', 'IBM Plex Mono', consolas, monaco, courier, 'courier new', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #666;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin: 0;
+  position: sticky;
+  top: 5rem;
+  align-self: start;
+  max-height: calc(100vh - 8rem);
+  overflow-y: auto;
+  order: 2;
+}
+
+/* Frontmatter separator (---) */
+.frontmatter-separator {
+  color: #999;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+/* Frontmatter Description Lists */
+.frontmatter dl {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  line-height: 1.5;
+}
+
+/* Frontmatter separator (---) */
+.frontmatter-separator {
+  color: #999;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  display: block;
+}
+
+/* Remove extra spacing between dt/dd pairs */
+.frontmatter dt,
+.frontmatter dd {
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+/* Reset nested dl (for sidebar_meta) - no indentation */
+.frontmatter dl dl {
+  margin: 0;
+  padding: 0;
+  display: inline;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.frontmatter dt {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+/* Ensure all dt elements are at the same level, even nested ones */
+.frontmatter dl dl dt {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+/* Colon is now in the HTML, no pseudo-element needed */
+
+.frontmatter dd {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+/* Nested dd should also be inline with no indentation */
+.frontmatter dl dl dd {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+/* Line break after each dd, but no extra margin */
+.frontmatter dd::after {
+  content: '';
+  display: block;
+  margin-bottom: 0;
+}
+
+/* Markdown Content Area */
+.markdown {
+  word-wrap: break-word;
+  padding: 1.5rem;
+  order: 1;
+}
+
+.markdown,
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6,
+.markdown pre,
+.markdown code,
+.markdown blockquote,
+.markdown em,
+.markdown strong,
+.markdown p,
+.markdown li {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: normal;
+  font-style: normal;
+  font-family: 'iA Writer Quattro', 'IBM Plex Mono', consolas, monaco, courier, 'courier new', monospace;
+  color: #333333;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6,
+.markdown pre,
+.markdown code,
+.markdown blockquote,
+.markdown ol,
+.markdown ul,
+.markdown li,
+.markdown p,
+.markdown section,
+.markdown header,
+.markdown footer {
+  float: none;
+  margin: 0;
+  padding: 0;
+}
+
+.markdown h1,
+.markdown p,
+.markdown ul,
+.markdown ol,
+.markdown pre,
+.markdown blockquote {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.markdown h1:first-child,
+.markdown h2:first-child,
+.markdown p:first-child {
+  margin-top: 0;
+}
+
+/* Heading 1 with underline */
+.markdown h1 {
+  position: relative;
+  display: inline-block;
+  display: table-cell;
+  padding: 0 0 48px;
+  margin: 0;
+  overflow: hidden;
+}
+
+.markdown h1:after {
+  content: '====================================================================================================';
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+}
+
+.markdown h1 + * {
+  margin-top: 0;
+}
+
+/* Headings with markdown markers */
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.markdown h2:before,
+.markdown h3:before,
+.markdown h4:before,
+.markdown h5:before,
+.markdown h6:before {
+  content: '## ';
+  display: inline;
+  color: #999;
+}
+
+.markdown h3:before {
+  content: '### ';
+}
+
+.markdown h4:before {
+  content: '#### ';
+}
+
+.markdown h5:before {
+  content: '##### ';
+}
+
+.markdown h6:before {
+  content: '###### ';
+}
+
+.markdown h2,
+.markdown h3 {
+  font-weight: bold;
+}
+
+/* Lists */
+.markdown li {
+  position: relative;
+  display: block;
+  padding-left: 3ex;
+}
+
+.markdown li:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #999;
+}
+
+.markdown ul > li:after {
+  content: '*';
+}
+
+.markdown ul {
+  list-style: none;
+}
+
+.markdown ol {
+  counter-reset: ol;
+  list-style: none;
+}
+
+.markdown ol > li:after {
+  content: counter(ol) '.';
+  counter-increment: ol;
+}
+
+/* Blockquote */
+.markdown blockquote {
+  position: relative;
+  padding-left: 2ch;
+  overflow: hidden;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 1rem 1rem 1rem 2ch;
+}
+
+.markdown blockquote:after {
+  content: '>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>\A>';
+  white-space: pre;
+  position: absolute;
+  top: 1rem;
+  left: 0;
+  font-size: 14px;
+  line-height: 24px;
+  color: #999;
+}
+
+.markdown blockquote p {
+  margin: 0;
+}
+
+/* Strong and Emphasis */
+.markdown strong:before,
+.markdown strong:after {
+  content: '**';
+  display: inline;
+  color: #999;
+}
+
+.markdown strong {
+  font-weight: bold;
+}
+
+.markdown em:before,
+.markdown em:after {
+  content: '*';
+  display: inline;
+  color: #999;
+}
+
+.markdown em {
+  font-style: italic;
+}
+
+/* Links */
+.markdown a {
+  text-decoration: none;
+  color: #333;
+}
+
+.markdown a:before {
+  content: '[';
+  display: inline;
+  color: #999;
+}
+
+.markdown a:after {
+  content: '](' attr(href) ')';
+  display: inline;
+  color: #999;
+}
+
+/* Code */
+.markdown code {
+  font-weight: 400;
+  padding: 0.1em 0.3em;
+}
+
+.markdown code:before,
+.markdown code:after {
+  content: '`';
+  display: inline;
+  color: #999;
+}
+
+.markdown pre code:before,
+.markdown pre code:after {
+  content: none;
+}
+
+.markdown pre {
+  padding: 1rem;
+  overflow-x: auto;
+  text-align: center;
+}
+
+/* Horizontal Rule */
+.markdown hr {
+  position: relative;
+  height: 24px;
+  font-size: 0;
+  line-height: 0;
+  overflow: hidden;
+  border: 0;
+  margin-bottom: 24px;
+}
+
+.markdown hr:after {
+  content: '----------------------------------------------------------------------------------------------------';
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 16px;
+  line-height: 24px;
+  width: 100%;
+  word-wrap: break-word;
+  color: #999;
+}
+
+/* Images */
+.markdown img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 24px 0;
+}
+
+/* ============================================
+   Responsive Breakpoints
+   - Mobile: max-width 640px
+   - Tablet: 641px - 1024px
+   - Desktop: 1025px+
+   ============================================ */
+
+/* Responsive: Large Tablet / Small Desktop */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .markdown-mode {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .markdown-mode article,
+  .markdown-mode section[data-slug] {
+    grid-template-columns: 1fr 220px;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .frontmatter {
+    font-size: 12px;
+    line-height: 1.45;
+    padding: 1rem;
+    top: 4rem;
+  }
+
+  .markdown {
+    padding: 1rem;
+  }
+}
+
+/* Responsive: Tablet Portrait */
+@media (min-width: 641px) and (max-width: 768px) {
+  .markdown-mode {
+    padding: 1.25rem 1rem;
+  }
+
+  .markdown-mode article,
+  .markdown-mode section[data-slug] {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .frontmatter {
+    position: static;
+    max-height: none;
+    font-size: 11px;
+    line-height: 1.5;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    order: 1;
+  }
+
+  .markdown {
+    padding: 0;
+    order: 2;
+  }
+
+  .markdown,
+  .markdown h1,
+  .markdown h2,
+  .markdown h3,
+  .markdown h4,
+  .markdown h5,
+  .markdown h6,
+  .markdown pre,
+  .markdown code,
+  .markdown blockquote,
+  .markdown em,
+  .markdown strong,
+  .markdown p,
+  .markdown li {
+    font-size: 15px;
+    line-height: 23px;
+  }
+
+  .markdown h1 {
+    padding: 0 0 36px;
+  }
+
+  .markdown h1:after {
+    bottom: 18px;
+    content: '==============================';
+  }
+
+  .markdown hr:after {
+    content: '------------------------------';
+  }
+
+  .markdown h1,
+  .markdown p,
+  .markdown ul,
+  .markdown ol,
+  .markdown pre,
+  .markdown blockquote {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .markdown h2,
+  .markdown h3,
+  .markdown h4,
+  .markdown h5,
+  .markdown h6 {
+    margin-bottom: 20px;
+  }
+
+  .markdown hr {
+    height: 20px;
+    margin-bottom: 20px;
+  }
+
+  .markdown hr:after {
+    line-height: 20px;
+  }
+}
+
+/* Responsive: Mobile */
+@media (max-width: 640px) {
+  .markdown-mode {
+    padding: 1rem 0.75rem;
+  }
+
+  .markdown-mode article,
+  .markdown-mode section[data-slug] {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  /* Frontmatter: Compact on mobile */
+  .frontmatter {
+    position: static;
+    max-height: none;
+    font-size: 10px;
+    line-height: 1.4;
+    padding: 0.75rem 0;
+    margin-bottom: 1.25rem;
+    order: 1;
+    overflow-x: auto;
+  }
+
+  .frontmatter-separator {
+    font-size: 10px;
+  }
+
+  .markdown {
+    padding: 0;
+    order: 2;
+  }
+
+  .markdown,
+  .markdown h1,
+  .markdown h2,
+  .markdown h3,
+  .markdown h4,
+  .markdown h5,
+  .markdown h6,
+  .markdown pre,
+  .markdown code,
+  .markdown blockquote,
+  .markdown em,
+  .markdown strong,
+  .markdown p,
+  .markdown li {
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  /* Tighter vertical rhythm on mobile */
+  .markdown h1,
+  .markdown p,
+  .markdown ul,
+  .markdown ol,
+  .markdown pre,
+  .markdown blockquote {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .markdown h2,
+  .markdown h3,
+  .markdown h4,
+  .markdown h5,
+  .markdown h6 {
+    margin-bottom: 16px;
+  }
+
+  /* Shorter underline for h1 on mobile */
+  .markdown h1 {
+    padding: 0 0 32px;
+    display: block;
+    word-break: break-word;
+  }
+
+  .markdown h1:after {
+    bottom: 16px;
+    content: '====================';
+  }
+
+  /* Shorter hr on mobile */
+  .markdown hr {
+    height: 16px;
+    margin-bottom: 16px;
+  }
+
+  .markdown hr:after {
+    content: '--------------------';
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  /* Better list handling on mobile */
+  .markdown li {
+    padding-left: 2.5ex;
+  }
+
+  /* Blockquote adjustments */
+  .markdown blockquote {
+    padding: 0.75rem 0.75rem 0.75rem 2ch;
+  }
+
+  .markdown blockquote:after {
+    top: 0.75rem;
+    font-size: 12px;
+    line-height: 21px;
+  }
+
+  /* Code blocks */
+  .markdown pre {
+    padding: 0.75rem 0;
+  }
+
+  .markdown code {
+    font-size: 13px;
+    padding: 0.1em 0.2em;
+  }
+
+  /* Images */
+  .markdown img {
+    margin: 16px 0;
+    border-radius: 4px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 375px) {
+  .markdown-mode {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .frontmatter {
+    font-size: 9px;
+    padding: 0.5rem 0;
+  }
+
+  .markdown,
+  .markdown h1,
+  .markdown h2,
+  .markdown h3,
+  .markdown h4,
+  .markdown h5,
+  .markdown h6,
+  .markdown pre,
+  .markdown code,
+  .markdown blockquote,
+  .markdown em,
+  .markdown strong,
+  .markdown p,
+  .markdown li {
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .markdown h1:after {
+    content: '===============';
+  }
+
+  .markdown hr:after {
+    content: '---------------';
+    font-size: 13px;
+  }
+}
+
+/* Touch-friendly tap targets */
+@media (hover: none) and (pointer: coarse) {
+  .markdown a {
+    padding: 0.25em 0;
+    display: inline;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 896px) and (orientation: landscape) {
+  .markdown-mode {
+    padding: 1rem 2rem;
+  }
+
+  .markdown-mode article,
+  .markdown-mode section[data-slug] {
+    grid-template-columns: 1fr 180px;
+    gap: 1.5rem;
+  }
+
+  .frontmatter {
+    position: sticky;
+    top: 3rem;
+    font-size: 10px;
+    max-height: calc(100vh - 5rem);
+    overflow-y: auto;
+    order: 2;
+    margin-bottom: 0;
+  }
+
+  .markdown {
+    order: 1;
+  }
+}
+
+/* Print styles for mobile-first approach */
+@media print {
+  .markdown-mode article,
+  .markdown-mode section[data-slug] {
+    grid-template-columns: 1fr;
+    page-break-inside: avoid;
+  }
+
+  .frontmatter {
+    display: none;
+  }
+
+  .markdown {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+}
