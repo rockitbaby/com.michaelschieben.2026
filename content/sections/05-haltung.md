@@ -80,7 +80,7 @@ Ich bin gerne dabei, wenn etwas anfängt. Diese Energie teile ich mit allen, die
 ## Mein Weg (Kurzfassung)
 
 **Frühe Jahre (2003–2012):**  
-Webentwicklung in der Musikbranche Hamburg. Mitgründer der Web-Agentur Two Antennas (2006). Projekte jenseits reiner Entwicklung — Inszenierungen am Schauspielhaus Hamburg in Second Life.
+Webentwicklung in der Musikbranche Hamburg. Mitgründer der Web-Agentur Two Antennas (2006). Projekte jenseits reiner Entwicklung — u.a. für eine Inszenierung am Schauspielhaus Hamburg in Second Life.
 
 **Design Studio (2012–2017):**  
 Partner im Precious Design Studio. Co-Geschäftsführer. Fokus auf Technik als Mittel der Gestaltung. Beginn der Workshop-Moderation.
