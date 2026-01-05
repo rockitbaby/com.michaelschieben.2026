@@ -176,9 +176,20 @@
   margin-bottom: 24px;
 }
 
-.markdown h1:first-child,
-.markdown h2:first-child,
-.markdown p:first-child {
+.markdown > h1:first-child,
+.markdown > h2:first-child,
+.markdown > h3:first-child,
+.markdown > p:first-child,
+.markdown > ul:first-child,
+.markdown > ol:first-child,
+.markdown > pre:first-child,
+.markdown > blockquote:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* Remove top margin from image if it's in the first paragraph */
+.markdown > p:first-child > img:first-child {
   margin-top: 0;
 }
 
