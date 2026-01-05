@@ -26,7 +26,14 @@ const Index = () => {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground font-mono">
             <div>
               <span className="text-foreground">// </span>
-              every decoding is another encoding
+              <a 
+                href="https://push.michaelschieben.com/2026/01/05/hello-hallo-neue-webseite/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:text-foreground transition-colors"
+              >
+                every decoding is another encoding
+              </a>
             </div>
             <div className="hidden sm:flex items-center gap-4">
               <span className="kbd-hint">⌘1</span>

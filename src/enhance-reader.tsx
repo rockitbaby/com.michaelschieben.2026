@@ -35,7 +35,7 @@ function createWrapperAndFooter() {
       <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground font-mono">
         <div>
           <span class="text-foreground">// </span>
-          every decoding is another encoding
+          <a href="https://push.michaelschieben.com/2026/01/05/hello-hallo-neue-webseite/" target="_blank" rel="noopener noreferrer" class="hover:text-foreground transition-colors">every decoding is another encoding</a>
         </div>
         <div class="hidden sm:flex items-center gap-4">
           <span class="kbd-hint">⌘1</span>
