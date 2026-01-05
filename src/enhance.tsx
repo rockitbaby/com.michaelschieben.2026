@@ -45,32 +45,102 @@ function saveOriginalHTML() {
 
 // Create mode toggle (lightweight, no React)
 function createModeToggle(currentMode: ViewMode, onModeChange: (mode: ViewMode) => void) {
-  const header = document.createElement('header');
-  header.className = 'sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border';
-  header.innerHTML = `
+  const modes = [
+    { id: 'page', label: 'PAGE', icon: '●', shortcut: '1' },
+    { id: 'reader', label: 'READER', icon: '☰', shortcut: '2' },
+    { id: 'raw', label: 'RAW', icon: '{}', shortcut: '3' },
+    { id: 'source', label: 'SOURCE', icon: '↗', shortcut: 'U' },
+  ];
+
+  // Desktop Header
+  const desktopHeader = document.createElement('header');
+  desktopHeader.className = 'sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border hidden sm:block';
+  desktopHeader.innerHTML = `
     <div class="container max-w-6xl mx-auto px-4 py-3">
       <nav class="flex items-center justify-between">
         <div class="font-mono text-sm text-muted-foreground">
-          <span class="hidden sm:inline">// </span>
-          <span class="text-foreground font-medium">michaelschieben.com 2026</span>
+          <span class="text-foreground font-medium">michaelschieben.com</span><span class="text-foreground font-medium">/2026</span>
         </div>
         <div class="flex items-center gap-1" id="mode-toggle-buttons"></div>
       </nav>
     </div>
   `;
 
-  const modes = [
-    { id: 'page', label: 'PAGE', mobileLabel: 'P', shortcut: '1' },
-    { id: 'reader', label: 'READER', mobileLabel: 'R', shortcut: '2' },
-    { id: 'raw', label: 'RAW', mobileLabel: 'Ra', shortcut: '3' },
-    { id: 'source', label: 'SOURCE', mobileLabel: 'S', shortcut: 'U' },
-  ];
+  // Mobile Header
+  const mobileHeader = document.createElement('header');
+  mobileHeader.className = 'sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border sm:hidden';
+  mobileHeader.innerHTML = `
+    <div class="px-4 py-3">
+      <div class="font-mono text-sm text-muted-foreground">
+        <span class="text-foreground font-medium">michaelschieben.com</span><span class="text-foreground font-medium">/2026</span>
+      </div>
+    </div>
+  `;
 
-  const buttonsContainer = header.querySelector('#mode-toggle-buttons');
+  // Mobile FAB Container
+  const fabContainer = document.createElement('div');
+  fabContainer.className = 'fixed bottom-6 right-6 z-50 sm:hidden';
+  fabContainer.id = 'mobile-fab-container';
+
+  // Backdrop
+  const backdrop = document.createElement('div');
+  backdrop.className = 'fixed inset-0 bg-black/20 backdrop-blur-sm transition-opacity duration-200 opacity-0 pointer-events-none';
+  backdrop.id = 'fab-backdrop';
+
+  // Menu Options Container
+  const menuContainer = document.createElement('div');
+  menuContainer.className = 'absolute bottom-16 right-0 flex flex-col gap-2 transition-all duration-300 ease-out opacity-0 translate-y-4 pointer-events-none';
+  menuContainer.id = 'fab-menu';
+
+  // FAB Button
+  const fabButton = document.createElement('button');
+  fabButton.className = 'relative w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/25 flex items-center justify-center font-mono text-lg font-bold transition-all duration-300 ease-out active:scale-95';
+  fabButton.id = 'fab-button';
+  fabButton.setAttribute('aria-label', 'Toggle view mode menu');
+  fabButton.setAttribute('aria-expanded', 'false');
+
+  let menuOpen = false;
+
+  const toggleMenu = () => {
+    menuOpen = !menuOpen;
+    backdrop.className = `fixed inset-0 bg-black/20 backdrop-blur-sm transition-opacity duration-200 ${menuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`;
+    menuContainer.className = `absolute bottom-16 right-0 flex flex-col gap-2 transition-all duration-300 ease-out ${menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`;
+    fabButton.className = `relative w-14 h-14 rounded-full flex items-center justify-center font-mono text-lg font-bold transition-all duration-300 ease-out active:scale-95 ${menuOpen ? 'rotate-45 bg-muted text-foreground shadow-md' : 'bg-primary text-primary-foreground shadow-lg shadow-primary/25'}`;
+    fabButton.setAttribute('aria-expanded', String(menuOpen));
+    updateFabIcon(currentMode);
+  };
+
+  const updateFabIcon = (activeMode: ViewMode) => {
+    const currentIcon = modes.find(m => m.id === activeMode)?.icon || '●';
+    fabButton.innerHTML = menuOpen ? '<span class="text-2xl">+</span>' : `<span class="text-base whitespace-nowrap">${currentIcon}</span>`;
+  };
+
+  fabButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
+
+  backdrop.addEventListener('click', () => {
+    if (menuOpen) toggleMenu();
+  });
+
+  // Close on click outside
+  document.addEventListener('click', (e) => {
+    if (menuOpen && !fabContainer.contains(e.target as Node)) {
+      toggleMenu();
+    }
+  });
+
+  fabContainer.appendChild(backdrop);
+  fabContainer.appendChild(menuContainer);
+  fabContainer.appendChild(fabButton);
+
+  const buttonsContainer = desktopHeader.querySelector('#mode-toggle-buttons');
   if (!buttonsContainer) return;
 
   // Function to update button states
   const updateButtons = (activeMode: ViewMode) => {
+    // Update desktop buttons
     buttonsContainer.innerHTML = '';
     modes.forEach((mode) => {
       const button = document.createElement('button');
@@ -82,10 +152,7 @@ function createModeToggle(currentMode: ViewMode, onModeChange: (mode: ViewMode) 
           : 'text-muted-foreground hover:text-foreground hover:bg-muted'
         }
       `;
-      button.innerHTML = `
-        <span class="hidden sm:inline">${mode.label}</span>
-        <span class="sm:hidden">${mode.mobileLabel}</span>
-      `;
+      button.textContent = mode.label;
       button.addEventListener('click', () => {
         if (mode.id === 'source') {
           window.open('https://github.com/rockitbaby/com.michaelschieben.2026/tree/main/content/sections', '_blank');
@@ -95,15 +162,51 @@ function createModeToggle(currentMode: ViewMode, onModeChange: (mode: ViewMode) 
       });
       buttonsContainer.appendChild(button);
     });
+
+    // Update mobile menu
+    menuContainer.innerHTML = '';
+    modes.forEach((mode, index) => {
+      const menuItem = document.createElement('button');
+      menuItem.className = `
+        flex items-center gap-3 px-4 py-3
+        rounded-full shadow-lg
+        font-mono text-sm
+        transition-all duration-200
+        ${activeMode === mode.id 
+          ? 'bg-primary text-primary-foreground' 
+          : 'bg-background text-foreground border border-border hover:bg-muted'
+        }
+      `;
+      menuItem.style.transitionDelay = menuOpen ? `${index * 50}ms` : '0ms';
+      menuItem.innerHTML = `
+        <span class="w-6 text-center opacity-60 whitespace-nowrap">${mode.icon}</span>
+        <span class="uppercase tracking-wider">${mode.label}</span>
+      `;
+      menuItem.addEventListener('click', () => {
+        if (mode.id === 'source') {
+          window.open('https://github.com/rockitbaby/com.michaelschieben.2026/tree/main/content/sections', '_blank');
+        } else {
+          onModeChange(mode.id as ViewMode);
+        }
+        if (menuOpen) toggleMenu();
+      });
+      menuContainer.appendChild(menuItem);
+    });
+
+    // Update FAB icon
+    updateFabIcon(activeMode);
+    currentMode = activeMode;
   };
 
   // Initial render
   updateButtons(currentMode);
 
   // Store update function for later use
-  (header as any).updateButtons = updateButtons;
+  (desktopHeader as any).updateButtons = updateButtons;
 
-  document.body.insertBefore(header, document.body.firstChild);
+  document.body.insertBefore(desktopHeader, document.body.firstChild);
+  document.body.insertBefore(mobileHeader, document.body.firstChild);
+  document.body.appendChild(fabContainer);
   
   return updateButtons;
 }
