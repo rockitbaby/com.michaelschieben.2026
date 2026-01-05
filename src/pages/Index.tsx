@@ -28,8 +28,6 @@ const Index = () => {
               <span className="text-foreground">// </span>
               <a 
                 href="https://push.michaelschieben.com/2026/01/05/hello-hallo-neue-webseite/" 
-                target="_blank" 
-                rel="noopener noreferrer"
                 className="hover:text-foreground transition-colors"
               >
                 every decoding is another encoding
