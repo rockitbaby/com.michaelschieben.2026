@@ -1,5 +1,5 @@
 import { ModeToggle } from '@/components/ModeToggle';
-import { ReaderMode } from '@/components/modes/ReaderMode';
+import { PageMode } from '@/components/modes/PageMode';
 import { MarkdownMode } from '@/components/modes/MarkdownMode';
 import { RawMode } from '@/components/modes/RawMode';
 import { useViewMode } from '@/hooks/useViewMode';
@@ -15,7 +15,7 @@ const Index = () => {
 
       {/* Main Content */}
       <main className="container max-w-6xl mx-auto px-4 py-8 md:py-12">
-        {mode === 'page' && <ReaderMode sections={sections} />}
+        {mode === 'page' && <PageMode sections={sections} />}
         {mode === 'reader' && <MarkdownMode sections={sections} />}
         {mode === 'raw' && <RawMode sections={sections} />}
       </main>

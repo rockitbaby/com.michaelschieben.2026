@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import React from 'react';
-import { ReaderMode } from './components/modes/ReaderMode';
+import { PageMode } from './components/modes/PageMode';
 
 // Create wrapper and footer structure
 function createWrapperAndFooter() {
@@ -64,7 +64,7 @@ export function renderReaderMode(sections: ReturnType<typeof import('./lib/recon
   const rootDiv = main.querySelector('#reader-root');
   if (rootDiv) {
     const root = createRoot(rootDiv);
-    root.render(<ReaderMode sections={sections} />);
+    root.render(<PageMode sections={sections} />);
   }
 }
 

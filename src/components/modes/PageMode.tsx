@@ -2,7 +2,7 @@ import { Section } from '@/content/sections';
 import { getSectionRenderer } from '../sections';
 import { useState } from 'react';
 
-interface ReaderModeProps {
+interface PageModeProps {
   sections: Section[];
 }
 
@@ -133,7 +133,7 @@ function getSectionStyles(style?: string): { wrapper: string; content: string } 
   }
 }
 
-export function ReaderMode({ sections }: ReaderModeProps) {
+export function PageMode({ sections }: PageModeProps) {
   return (
     <div className="animate-fade-in">
       {sections.map((section, index) => {
@@ -165,3 +165,4 @@ export function ReaderMode({ sections }: ReaderModeProps) {
     </div>
   );
 }
+
